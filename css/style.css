@@ -1,0 +1,17 @@
+name {
+    color: red;
+}
+
+div.name{
+	background: linear-gradient(lightblue, white); 
+	height: 50px;
+	text-align: center;
+	text-shadow:aqua;
+	font-family: monospace;
+	font-weight: lighter;
+	font-size: xx-large
+	
+}
+a, u {
+    text-decoration: none;
+}
