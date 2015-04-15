@@ -2,7 +2,7 @@
 	var p = new spredfast.Poller();
 	var colors = ['green','yellow','red','orange','pink'];
 	
-	p.poll({frequency:1},function(data,limit){
+	p.poll({frequency:3},function(data,limit){
 		var items = $("#items");
 		items.html("");
 		var ul = $("<ul>");
