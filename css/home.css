@@ -1,0 +1,71 @@
+.wrap{
+	min-width:440px;
+	width: 100%;
+	margin:auto;
+}
+h1.header{
+	color: white;
+	text-align: center;
+	padding-top: 100px;
+	font-size: 40px;
+	font-weight: bold;
+	text-transform: uppercase;
+	text-shadow: 10px 10px 20px black;
+	font-family: Frijole;
+}
+
+.middle_rect{
+  	border-radius: 25px;
+    border: 4px solid #E8EAED;
+    width: 70%;
+    height: 200px;
+    margin: auto;
+}
+ul{
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.4);
+	border-radius: 25px;
+}
+
+li{
+	color: white;
+	height: 20%;
+	border-bottom:1px solid #E8EAED;
+	text-align: center;
+	line-height: 200%;
+}
+
+li:LAST-CHILD {
+	border: none;
+}
+
+div.left{
+	float: left;
+	padding-left: 30px;
+	font-family: sans-serif;
+	font-weight: bold;
+}
+
+div.right{
+	float: right;
+	padding-right: 30px;
+	color: red;
+}
+
+div.red{
+	color: red;
+}
+
+body{
+	background-color:#2D2E2E;
+	background: radial-gradient(black 5%, transparent 16%) 0 0,
+	radial-gradient(black 15%, transparent 16%) 8px 8px,
+	radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 0 1px,
+	radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 8px 9px;
+background-size:16px 16px;
+background-color:#282828;
+}
+
