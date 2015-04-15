@@ -1,5 +1,5 @@
 .wrap{
-	min-width:500px;
+	min-width:440px;
 	width: 100%;
 	margin:auto;
 }
@@ -17,7 +17,7 @@ h1.header{
 .middle_rect{
   	border-radius: 25px;
     border: 4px solid #E8EAED;
-    width: 70%;
+    width: 80%;
     height: 200px;
     margin: auto;
 }
