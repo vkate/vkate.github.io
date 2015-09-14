@@ -1,0 +1,268 @@
+
+
+
+import java.util.Iterator;
+import java.util.Scanner;
+
+/**
+ * This class implements directed Graph by taking
+ * input and stores as adjacency list.
+ * @author vamsi
+ * 
+input:
+5 7 1
+1 5 8
+1 4 7
+1 3 6
+4 3 3
+3 5 6
+
+V = 5, E = 7 s=1
+
+u=1 v=5 w=8
+
+Add iterators.
+
+ *
+ */
+public class GraphAdjList implements Iterable<GraphNode>{
+	private int V;
+	private int E;
+	private int s;
+	private int t;
+	public int getT() {
+		return t;
+	}
+
+	public void setT(int t) {
+		this.t = t;
+	}
+
+	private GraphNode[] adjList;
+	
+	public GraphNode[] getAdjList() {
+		return adjList;
+	}
+
+	public int getV() {
+		return V;
+	}
+
+	public void setV(int v) {
+		V = v;
+	}
+
+	public int getE() {
+		return E;
+	}
+
+	public void setE(int e) {
+		E = e;
+	}
+
+	public int getS() {
+		return s;
+	}
+
+	public void setS(int s) {
+		this.s = s;
+	}
+
+	public GraphAdjList() {
+		
+	}
+	
+	public boolean loadGraph(){
+		Scanner scanner = new Scanner(System.in);
+		this.V=scanner.nextInt();
+		this.E=scanner.nextInt();
+		this.s=scanner.nextInt();
+		this.t=scanner.nextInt();
+		adjList = new GraphNode[V+1];
+		for(int i=1;i<=V;i++){
+			adjList[i] = new GraphNode(i);
+		}
+		while(scanner.hasNext()){
+			int u = scanner.nextInt();
+			if(u==0)
+				break;
+			addEdge(u,scanner.nextInt(),scanner.nextInt());
+		}
+		return true;
+	}
+	
+	public GraphAdjList(int V){
+		this.V=V;
+		adjList = new GraphNode[V+1];
+		for(int i=1;i<=V;i++){
+			adjList[i] = new GraphNode(i);
+		} 
+	}
+	
+	Edge addEdge(int u,int v,int w){
+		//directed graph.
+		Edge edge = new Edge(adjList[u],adjList[v],w);
+		adjList[u].add(edge);
+		return edge;
+	}
+	
+
+	
+	public void setAdjList(GraphNode[] adjList){
+		this.adjList = adjList;
+	}
+	
+	public static void main(String[] args){
+		GraphAdjList graphAdjList = new GraphAdjList();
+		graphAdjList.loadGraph();
+		//graphAdjList.DFS();
+	}
+
+	@Override
+	public Iterator<GraphNode> iterator() {
+		return new VertexIterator();
+	}
+	
+	private class VertexIterator implements Iterator<GraphNode>{
+		private int noOfVertices = 0;
+		
+		@Override
+		public boolean hasNext() {
+			return noOfVertices==V?false:true;
+		}
+
+		@Override
+		public GraphNode next() {
+			noOfVertices++;
+			return adjList[noOfVertices];
+		}
+
+		@Override
+		public void remove() {
+			//not implemented
+		}
+		
+	}
+
+	
+	
+}
+
+
+class Edge implements Comparable<Edge>{
+	GraphNode u; //from node
+	GraphNode v; // to node
+	int w; // weight
+
+	public Edge(GraphNode u, GraphNode v, int w) {
+		super();
+		this.u = u;
+		this.v = v;
+		this.w = w;
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Edge other = (Edge) obj;
+		if (u == null) {
+			if (other.u != null)
+				return false;
+		} else if (!u.equals(other.u))
+			return false;
+		if (v == null) {
+			if (other.v != null)
+				return false;
+		} else if (!v.equals(other.v))
+			return false;
+		if (w != other.w)
+			return false;
+		return true;
+	}
+
+	public String toString(){
+			return v+" with weight-"+ w;
+	}
+	
+
+	@Override
+	public int compareTo(Edge arg0) {
+		if(arg0.w > this.w)
+			return -1;
+		else if(arg0.w < this.w)
+			return 1;
+		else
+			return 0;
+	}
+
+
+	
+}
+
+class GraphNode implements Comparable<GraphNode>{
+	
+	int v; //node name
+	LinkedList edges;
+	public GraphNode parent;
+	public long d;
+	public int count;
+	public boolean inQ;
+	public int color;
+
+	public void remove(int removeNode) {
+		this.edges.remove(removeNode);
+	}
+
+	GraphNode(int v){
+		this.v=v;
+		edges = new LinkedList();
+	}
+	
+	public void add(Edge edge) {
+		this.edges.add(edge);
+	}
+	
+	public void add(Edge edge,int index) {
+		this.edges.add(edge);
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		GraphNode other = (GraphNode) obj;
+		if (v != other.v)
+			return false;
+		return true;
+	}
+
+	public String toString(){
+		return ""+v;
+	}
+	
+	public void removeEdge(Edge edge) {
+		this.edges.removeNode(edge);
+	}
+	
+	@Override
+	public int compareTo(GraphNode arg0) {
+		if(arg0.d > this.d)
+			return -1;
+		else if(arg0.d < this.d)
+			return 1;
+		else
+			return 0;
+	}
+
+	
+
+}
